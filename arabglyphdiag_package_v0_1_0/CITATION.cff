@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+title: "ArabGlyphDiag: An Open-Source Toolkit for Structural Error Diagnosis in Arabic Handwritten Character Recognition"
+message: "If you use ArabGlyphDiag, please cite the software and the accompanying paper when available."
+type: software
+authors:
+  - family-names: Briouya
+    given-names: Asmae
+version: 0.1.0
+date-released: 2026-08-24
+license: MIT
