@@ -3,8 +3,8 @@ title: "ArabGlyphDiag: An Open-Source Toolkit for Structural Error Diagnosis in 
 message: "If you use ArabGlyphDiag, please cite the software and the accompanying paper when available."
 type: software
 authors:
-  - family-names: Briouya
-    given-names: Asmae
+  - family-names: Farhaoui
+    given-names: Othmane
 version: 0.1.0
 date-released: 2026-08-24
 license: MIT
