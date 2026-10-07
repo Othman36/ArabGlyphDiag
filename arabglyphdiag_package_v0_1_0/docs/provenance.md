@@ -21,5 +21,13 @@ The audit manifest recorded the Pass 1, Pass 2, human-audit, detector-review, an
    - blinded 300-image human audit, repeat subset, and secondary overlay review.
 3. `ArabGlyphDiag_PostHoc_Validation_v5.ipynb`
    - frozen-recognizer structural diagnostics and foreground-ink-matched occlusion control.
+4. Cross-architecture reviewer-closure run
+   - HOG+linear-SVM and compact-transformer software-contract checks; fixed diagnostic-guided class-weighting case study.
+5. Pretrained ViT-B/16 validation run
+   - ImageNet-pretrained ViT-B/16 on AHCD and Hijja2; three seeds and validation-only checkpoint selection; dependence-aware Grad-CAM reanalysis from frozen saved outputs.
+6. Final validation checks
+   - 20 matched random class-weighting controls per dataset; no test-selected control.
+7. HMBD GitHub recovery and full rerun
+   - original `HossamBalaha/HMBD-v1` repository; 13,533 decoded isolated-letter images; hash-disjoint 70/15/15 image-level split; HOG/SVM and three-seed pretrained ViT-B/16 reruns.
 
-The packaged library intentionally does not include the trained model weights or benchmark datasets. It provides the reusable diagnostic implementation.
+The packaged library intentionally does not include trained model weights, benchmark datasets, or the research notebooks. It provides the reusable diagnostic implementation plus validation and provenance documentation.

@@ -20,7 +20,7 @@ It is designed to answer a different question from a recognition benchmark: once
 
 ArabGlyphDiag is **diagnostic software**, not a new classifier and not a causal explanation method. The structural taxonomy is operational and hierarchical. Exact connected-component count should be treated as an auxiliary descriptive signal. In the published validation, spatial localization was more reliable than exact component counting.
 
-The core prediction-based diagnostic interface is architecture-independent when predictions are supplied externally. The final empirical evaluation used one frozen convolutional backbone family on AHCD and Hijja2; systematic multi-architecture validation remains future work.
+The core prediction-based diagnostic interface is architecture-independent when predictions are supplied externally. The empirical evaluation applies the same diagnostic contract to residual-CNN, HOG+linear-SVM, and ImageNet-pretrained ViT-B/16 recognizers. AHCD and Hijja2 provide the primary benchmark context, and the 28 isolated-letter classes from the original HMBD v1 repository provide an additional dataset-level software-contract check. Differences in structural-error distributions across recognizers are treated descriptively rather than as architecture-invariant behavior.
 
 ## Installation
 
@@ -129,15 +129,20 @@ This preserves the mask shape and area while choosing translated locations whose
 
 ## Validation snapshot
 
-The frozen study reported:
+The final study reported:
 
 - AHCD primary single-model accuracy: **98.442% +/- 0.075 pp**;
 - Hijja2 primary single-model accuracy: **93.926% +/- 0.137 pp**;
-- residual AHCD errors: 55.77% skeleton, 44.23% dot-count;
-- residual Hijja2 errors: 86.64% skeleton, 13.16% dot-count, 0.20% dot-position;
+- residual CNN fingerprints: AHCD 55.77% skeleton / 44.23% count; Hijja2 86.64% skeleton / 13.16% count / 0.20% position;
+- pretrained ViT-B/16 ensemble accuracy: **97.53%** on AHCD, **89.08%** on Hijja2, and **94.14%** on HMBD;
+- HMBD HOG+linear-SVM accuracy: **64.04%** on a fixed 2,030-image test partition from the complete 13,533-image isolated-letter set;
 - blinded 300-image human comparison: 76.74% position agreement, 58.57% exact component-count agreement, 78.75% presence agreement;
 - at 2.5% mask area, expected-region occlusion exceeded foreground-ink-matched translated controls by a class-level mean of **0.1496** on AHCD and **0.1422** on Hijja2;
-- the 2.5% effect was positive for 13/15 AHCD dotted classes and 15/15 Hijja2 dotted classes.
+- the 2.5% effect was positive for 13/15 AHCD dotted classes and 15/15 Hijja2 dotted classes;
+- exploratory Grad-CAM alignment did not survive null/dependence-aware checks and is not used as evidence of structural reasoning;
+- a fixed 2x diagnostic-guided HOG/SVM class-weighting case study did not outperform matched random class reweighting, so it is presented only as an auditable diagnostic-to-action example.
+
+HMBD uses the original repository: `https://github.com/HossamBalaha/HMBD-v1`. The isolated-letter organization does not expose writer identities for a writer-disjoint reconstruction, so HMBD remains supplementary.
 
 See `docs/validation.md` for the full scope and caveats.
 
